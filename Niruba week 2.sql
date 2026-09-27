@@ -1,0 +1,58 @@
+CREATE DATABASE FRESHBASKET;
+USE FRESHBASKET;
+
+CREATE TABLE Category(
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50)
+);
+
+CREATE TABLE Product
+(
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2),
+    Stock INT,
+    CategoryID INT,
+    FOREIGN KEY (CategoryID)
+    REFERENCES Category(CategoryID)
+);
+
+INSERT INTO Category VALUES
+(11, "GROCERIES"),
+(12, "FRUITS"),
+(13, "VEGETABLES"),
+(14, "DAIRY"),
+(15, "BEVERAGES");
+
+SELECT * FROM Category;
+
+INSERT INTO Product VALUES
+(201, "BASMATI RICE", 620, 45, 11),
+(202, "WHEAT FLOUR", 280, 35, 11),
+(203, "APPLES", 180, 30, 12),
+(204, "BANANAS", 70, 50, 12),
+(205, "CARROTS", 90, 40, 13),
+(206, "TOMATOES", 65, 55, 13),
+(207, "FULL CREAM MILK", 75, 25, 14),
+(208, "CHEESE", 240, 20, 14),
+(209, "ORANGE JUICE", 160, 30, 15),
+(210, "GREEN TEA", 190, 25, 15);
+
+SELECT * FROM Product;
+
+UPDATE Product
+SET Price = 650,
+    Stock = 50
+WHERE ProductID = 201;
+
+SELECT * FROM Product
+WHERE ProductID = 201;
+
+DELETE FROM Product
+WHERE ProductID = 206;
+
+DELETE FROM Product
+WHERE CategoryID = 15;
+
+SELECT * FROM Product
+ORDER BY CategoryID;
